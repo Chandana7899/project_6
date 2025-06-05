@@ -252,6 +252,7 @@ def list_branches(self):
             else:
                 print(f"'{file}' is not staged.")
         self.write_index(index)
+#qwwee
 
 def main():
     if len(sys.argv) < 2:

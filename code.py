@@ -227,24 +227,54 @@ def init():
         f.write("master")
     print("Initialized empty myvcs repository.")
 
+    def print_help():
+    print("\nmyvcs - A Simple Version Control System\n")
+    print("Usage: myvcs.py <command> [<args>]\n")
+    print("Available commands:")
+    print("  init                   Initialize a new repository")
+    print("  add <files>            Add files to staging area")
+    print("  remove <files>         Remove files from staging")
+    print("  commit <message>       Commit staged changes")
+    print("  log                    View commit history")
+    print("  status                 Show working directory status")
+    print("  checkout <target>      Switch to branch or commit")
+    print("  branch <name>          Create a new branch")
+    print("  list-branches          List all branches")
+    print("  current-branch         Show current branch")
+    print("  help                   Show this help message\n")
+
+
 def main():
     if len(sys.argv) < 2:
-        print("Usage: myvcs.py <command> [<args>]")
-        print("Commands: init, add, commit, log, status, checkout, branch")
+        print_help()
         return
+
     cmd = sys.argv[1]
 
     if cmd == "init":
         init()
         return
 
-    repo = Repository()
+    if cmd == "help":
+        print_help()
+        return
+
+    try:
+        repo = Repository()
+    except SystemExit:
+        return
 
     if cmd == "add":
         if len(sys.argv) < 3:
             print("Usage: myvcs.py add <file1> [file2 ...]")
             return
         repo.add(sys.argv[2:])
+
+    elif cmd == "remove":
+        if len(sys.argv) < 3:
+            print("Usage: myvcs.py remove <file1> [file2 ...]")
+            return
+        repo.remove(sys.argv[2:])
 
     elif cmd == "commit":
         if len(sys.argv) < 3:
@@ -271,9 +301,12 @@ def main():
             return
         repo.branch(sys.argv[2])
 
-    else:
+    elif cmd == "list-branches":
+OBOBOB        repo.list_branches()
+
+    elif cmd == "current-branch":
+OB        repo.current_branch()
+
+OB    else:
         print(f"Unknown command: {cmd}")
-
-if __name__ == "__main__":
-    main()
-
+        print("Run myvcs.py help for a list of commands."):

@@ -5,6 +5,7 @@ import json
 import shutil
 import datetime
 
+#------python code-----
 # ----------- Utility functions ------------
 
 def repo_path(*paths):
@@ -258,7 +259,10 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: myvcs.py <command> [<args>]")
         print("Commands: init, add, commit, log, status, checkout, branch")
-        return
+
+
+
+return
     cmd = sys.argv[1]
 
     if cmd == "init":

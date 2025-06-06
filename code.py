@@ -1,11 +1,14 @@
 import os
+
 import sys
 import hashlib
 import json
 import shutil
 import datetime
 
+#------python code-----
 # ----------- Utility functions ------------
+
 
 def repo_path(*paths):
     """Return path inside .myvcs folder"""
@@ -227,6 +230,7 @@ def init():
         f.write("master")
     print("Initialized empty myvcs repository.")
 
+
     def print_help():
     print("\nmyvcs - A Simple Version Control System\n")
     print("Usage: myvcs.py <command> [<args>]\n")
@@ -248,6 +252,43 @@ def main():
     if len(sys.argv) < 2:
         print_help()
         return
+
+
+def list_branches(self):
+        branches = os.listdir(self.branches_path)
+        current = self.head
+        print("Branches:")
+        for b in branches:
+            if b == current:
+                print(f"* {b}")
+            else:
+                print(f"  {b}")
+
+    def current_branch(self):
+        if self.head is None:
+            print("HEAD is detached (not on any branch).")
+        else:
+            print(f"Current branch: {self.head}")
+
+    def remove(self, files):
+        index = self.read_index()
+        for file in files:
+            if file in index:
+                del index[file]
+                print(f"Removed '{file}' from staging.")
+            else:
+                print(f"'{file}' is not staged.")
+        self.write_index(index)
+#qwwee
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: myvcs.py <command> [<args>]")
+        print("Commands: init, add, commit, log, status, checkout, branch")
+
+
+
+return
 
     cmd = sys.argv[1]
 

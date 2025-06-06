@@ -1,11 +1,4 @@
 import os
-import sys
-import hashlib
-import json
-import shutil
-import datetime
-
-# ----------- Utility functions ------------
 
 def repo_path(*paths):
     """Return path inside .myvcs folder"""

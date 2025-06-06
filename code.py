@@ -227,6 +227,32 @@ def init():
         f.write("master")
     print("Initialized empty myvcs repository.")
 
+def list_branches(self):
+        branches = os.listdir(self.branches_path)
+        current = self.head
+        print("Branches:")
+        for b in branches:
+            if b == current:
+                print(f"* {b}")
+            else:
+                print(f"  {b}")
+
+    def current_branch(self):
+        if self.head is None:
+            print("HEAD is detached (not on any branch).")
+        else:
+            print(f"Current branch: {self.head}")
+
+    def remove(self, files):
+        index = self.read_index()
+        for file in files:
+            if file in index:
+                del index[file]
+                print(f"Removed '{file}' from staging.")
+            else:
+                print(f"'{file}' is not staged.")
+        self.write_index(index)
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: myvcs.py <command> [<args>]")

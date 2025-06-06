@@ -1,5 +1,15 @@
 import os
 
+import sys
+import hashlib
+import json
+import shutil
+import datetime
+
+#------python code-----
+# ----------- Utility functions ------------
+
+
 def repo_path(*paths):
     """Return path inside .myvcs folder"""
     return os.path.join(".myvcs", *paths)
@@ -245,12 +255,16 @@ def list_branches(self):
             else:
                 print(f"'{file}' is not staged.")
         self.write_index(index)
+#qwwee
 
 def main():
     if len(sys.argv) < 2:
         print("Usage: myvcs.py <command> [<args>]")
         print("Commands: init, add, commit, log, status, checkout, branch")
-        return
+
+
+
+return
     cmd = sys.argv[1]
 
     if cmd == "init":
